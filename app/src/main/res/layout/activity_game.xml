@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background3"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="In Fight Battle"
+        android:layout_gravity="center"
+        android:textSize="22sp"
+        android:textColor="@color/purple_200"
+        android:layout_marginTop="40dp"
+        android:id="@+id/text_screen"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:background="@drawable/bgquestion"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_width="290dp"
+        android:gravity="center"
+        android:layout_height="150dp">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Guess Animals in English language"
+            android:layout_gravity="center"
+            android:textSize="26sp"
+            android:textAlignment="center"
+            android:textColor="#332FA2"
+            android:lineSpacingExtra="6dp"
+            android:id="@+id/text_question"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+<EditText
+    android:id="@+id/edit_text"
+    android:layout_width="200dp"
+    android:layout_height="80dp"
+    android:background="@drawable/bgpurple"
+    android:layout_gravity="center"
+    android:layout_marginTop="70dp"
+    android:textSize="32sp"
+    android:gravity="center"
+    android:textColor="#332FA2"
+    android:focusable="false"
+    android:clickable="false"
+    android:layout_marginBottom="70dp"
+    android:padding="10dp"/>
+
+<TextView
+    android:id="@+id/text_title"
+    android:text="Ammo"
+    android:textSize="24sp"
+    android:textColor="@color/purple_200"
+    android:textStyle="bold"
+    android:layout_marginRight="28dp"
+    android:layout_marginLeft="28dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    />
+    
+    <LinearLayout
+        android:id="@+id/layout_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
