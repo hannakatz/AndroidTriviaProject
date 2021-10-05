@@ -1,16 +1,21 @@
 package com.example.triviaproject;
 
+import java.util.ArrayList;
+
 public class Player {
     String userName;
     String password;
     String image;
     String musicPlay;
+    ArrayList<PlayerScore> playerScores;
+
 
     public Player(String name, String setPassword, String setImage, String setMusicPlay){
         this.userName = name;
         this.password = setPassword;
         this.image = setImage;
         this.musicPlay = setMusicPlay;
+        playerScores = new ArrayList<PlayerScore>();
     }
 
     public String getUserName() {
@@ -45,4 +50,11 @@ public class Player {
         this.musicPlay = password;
     }
 
+    public ArrayList<PlayerScore> getPlayerScores() {
+        return playerScores;
+    }
+
+    public void setPlayerScores(ArrayList<PlayerScore> playerScores) {
+        this.playerScores = playerScores;
+    }
 }
