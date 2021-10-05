@@ -1,5 +1,7 @@
 package com.example.triviaproject;
 
+import androidx.annotation.NonNull;
+
 public class PlayerScore {
     private String gameName;
     public int score;
@@ -23,5 +25,11 @@ public class PlayerScore {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Game : " + gameName + "\n" + "The Score : " + score;
     }
 }

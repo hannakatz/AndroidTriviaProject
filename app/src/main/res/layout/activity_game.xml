@@ -50,6 +50,52 @@
         android:textStyle="bold"/>
 
     <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score : "
+            android:layout_gravity="center"
+            android:textSize="22sp"
+            android:textColor="@color/purple_200"
+            android:id="@+id/text_score"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_gravity="center"
+            android:textSize="22sp"
+            android:textColor="@color/purple_200"
+            android:id="@+id/text_count"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <LinearLayout
+        android:background="@drawable/bgquestion"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="290dp"
+        android:gravity="center"
+        android:layout_height="150dp">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Guess Animals in English language"
+            android:layout_gravity="center"
+            android:textSize="26sp"
+            android:textAlignment="center"
+            android:textColor="#332FA2"
+            android:lineSpacingExtra="6dp"
+            android:id="@+id/text_question"
+            android:textStyle="bold"/>
+
         android:background="@drawable/bgquestion"
         android:orientation="vertical"
         android:layout_gravity="center"
@@ -59,7 +105,7 @@
         android:layout_height="150dp">
 
         <TextView
-            android:layout_width="200dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:text="Guess Animals in English language"
             android:layout_gravity="center"

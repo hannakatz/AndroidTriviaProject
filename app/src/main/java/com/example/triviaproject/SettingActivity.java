@@ -19,6 +19,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     private String ifMusicPlay;
     private Player player;
     private Gson gson = new Gson();
+    private Button btnScoreList;
 
     private final String CREDENTIAL_SHARED_PREF = "our_shared_pref";
 
@@ -31,6 +32,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Settings");
+
+        btnScoreList = findViewById(R.id.btn_player_score);
 
         SharedPreferences credentials = getSharedPreferences(CREDENTIAL_SHARED_PREF, Context.MODE_PRIVATE);
         String json = credentials.getString("Player","");
@@ -46,6 +49,14 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         musicPlayerBtn.setOnClickListener(this);
+
+        btnScoreList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingActivity.this, ScoresPlayerActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

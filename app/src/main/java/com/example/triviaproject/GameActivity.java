@@ -35,8 +35,8 @@ public class GameActivity extends AppCompatActivity {
     private ImageView live1;
     private ImageView live2;
     private ImageView live3;
-
-    Button btnBack;
+    private TextView setScore;
+    private Button btnBack;
 
     private final String CREDENTIAL_SHARED_PREF = "our_shared_pref";
 
@@ -51,6 +51,9 @@ public class GameActivity extends AppCompatActivity {
         live1 = findViewById(R.id.live_1);
         live2 = findViewById(R.id.live_2);
         live3 = findViewById(R.id.live_3);
+
+        setScore = findViewById(R.id.text_count);
+
 
         keys = shuffleArray(keys);
         for(String key : keys){
@@ -74,9 +77,10 @@ public class GameActivity extends AppCompatActivity {
                 String json = gson.toJson(player);
                 editor.putString("Player",json);
                 editor.commit();
+
+                GameActivity.this.finish();
             }
         });
-
     }
 
     private String[] shuffleArray(String[] array){
@@ -147,6 +151,8 @@ public class GameActivity extends AppCompatActivity {
         if(editText.getText().toString().equals(textAnswer)){
             Toast.makeText(GameActivity.this, "Correct", Toast.LENGTH_SHORT).show();
             score++;
+            String scoreString = Integer.toString(score);
+            setScore.setText(scoreString);
         }else {
             Toast.makeText(GameActivity.this, "Wrong", Toast.LENGTH_SHORT).show();
             if(lives == 3){
