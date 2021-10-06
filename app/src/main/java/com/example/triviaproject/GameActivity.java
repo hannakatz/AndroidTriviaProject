@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,11 +35,14 @@ public class GameActivity extends AppCompatActivity {
     Animation animation;
     private static int score;
     private static int lives = 3;
+    private static int counterProgress = 0;
     private ImageView live1;
     private ImageView live2;
     private ImageView live3;
     private TextView setScore;
     private Button btnBack;
+    ProgressBar progressBar;
+    CountDownTimer mCountDownTimer;
 
     private final String CREDENTIAL_SHARED_PREF = "our_shared_pref";
 
@@ -81,6 +87,28 @@ public class GameActivity extends AppCompatActivity {
                 GameActivity.this.finish();
             }
         });
+
+        progressBar = findViewById(R.id.progressbar);
+        mCountDownTimer = new CountDownTimer(60000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                counterProgress++;
+                progressBar.setProgress((int)counterProgress*100/(60000/1000));
+                if(counterProgress == 45){
+                    Drawable progressDrawableRed = getResources().getDrawable(R.drawable.progress_red);
+                    progressBar.setProgressDrawable(progressDrawableRed);
+                }
+
+            }
+
+            @Override
+            public void onFinish() {
+                //Do what you want
+               /* counter++;
+                mProgressBar.setProgress(100);*/
+            }
+        };
+        mCountDownTimer.start();
     }
 
     private String[] shuffleArray(String[] array){

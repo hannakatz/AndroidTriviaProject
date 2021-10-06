@@ -75,6 +75,7 @@
             android:id="@+id/text_count"
             android:textStyle="bold"/>
     </LinearLayout>
+
     <LinearLayout
         android:background="@drawable/bgquestion"
         android:orientation="vertical"
@@ -86,26 +87,6 @@
 
         <TextView
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Guess Animals in English language"
-            android:layout_gravity="center"
-            android:textSize="26sp"
-            android:textAlignment="center"
-            android:textColor="#332FA2"
-            android:lineSpacingExtra="6dp"
-            android:id="@+id/text_question"
-            android:textStyle="bold"/>
-
-        android:background="@drawable/bgquestion"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_width="290dp"
-        android:gravity="center"
-        android:layout_height="150dp">
-
-        <TextView
-            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:text="Guess Animals in English language"
             android:layout_gravity="center"
@@ -154,12 +135,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-
-
     </LinearLayout>
 
-
-
+<ProgressBar
+    android:id="@+id/progressbar"
+    style="?android:attr/progressBarStyleHorizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    android:progressDrawable="@drawable/progress_green"/>
 
 </LinearLayout>
