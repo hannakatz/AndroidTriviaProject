@@ -3,6 +3,7 @@ package com.example.triviaproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -60,6 +61,24 @@ public class GameActivity extends AppCompatActivity {
 
         setScore = findViewById(R.id.text_count);
 
+        mCountDownTimer = new CountDownTimer(60000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                counterProgress++;
+                progressBar.setProgress((int)counterProgress*100/(60000/1000));
+                if(counterProgress == 45){
+                    Drawable progressDrawableRed = getResources().getDrawable(R.drawable.progress_red);
+                    progressBar.setProgressDrawable(progressDrawableRed);
+                }
+
+            }
+
+            @Override
+            public void onFinish() {
+                setHurt();
+            }
+        };
+        mCountDownTimer.start();
 
         keys = shuffleArray(keys);
         for(String key : keys){
@@ -75,40 +94,11 @@ public class GameActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                player.playerScores.add(new PlayerScore(score, "Survival Mode"));
-
-                SharedPreferences credentials = getSharedPreferences(CREDENTIAL_SHARED_PREF, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = credentials.edit();
-                Gson gson = new Gson();
-                String json = gson.toJson(player);
-                editor.putString("Player",json);
-                editor.commit();
-
                 GameActivity.this.finish();
             }
         });
 
-        progressBar = findViewById(R.id.progressbar);
-        mCountDownTimer = new CountDownTimer(60000,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                counterProgress++;
-                progressBar.setProgress((int)counterProgress*100/(60000/1000));
-                if(counterProgress == 45){
-                    Drawable progressDrawableRed = getResources().getDrawable(R.drawable.progress_red);
-                    progressBar.setProgressDrawable(progressDrawableRed);
-                }
 
-            }
-
-            @Override
-            public void onFinish() {
-                //Do what you want
-               /* counter++;
-                mProgressBar.setProgress(100);*/
-            }
-        };
-        mCountDownTimer.start();
     }
 
     private String[] shuffleArray(String[] array){
@@ -148,6 +138,7 @@ public class GameActivity extends AppCompatActivity {
         textTitle.setTypeface(typeface);
         editText.setTypeface(typeface);
         textView.setTypeface(typeface);
+        progressBar = findViewById(R.id.progressbar);
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,23 +170,18 @@ public class GameActivity extends AppCompatActivity {
         if(editText.getText().toString().equals(textAnswer)){
             Toast.makeText(GameActivity.this, "Correct", Toast.LENGTH_SHORT).show();
             score++;
+            if(score == 3){
+                setScore();
+                Intent intent = new Intent(GameActivity.this, WinActivity.class);
+                startActivity(intent);
+                finish();
+            }
             String scoreString = Integer.toString(score);
             setScore.setText(scoreString);
-        }else {
+        }
+        else {
             Toast.makeText(GameActivity.this, "Wrong", Toast.LENGTH_SHORT).show();
-            if(lives == 3){
-              live3.setBackgroundResource(R.color.transparent);
-            }
-            if(lives == 2){
-                live2.setBackgroundResource(R.color.transparent);
-            }
-            if(lives == 1){
-                live1.setBackgroundResource(R.color.transparent);
-            }
-            if(lives == 0){
-                Toast.makeText(GameActivity.this, "Game Over", Toast.LENGTH_SHORT).show();
-            }
-            lives--;
+            setHurt();
         }
         editText.setText("");
 
@@ -205,4 +191,32 @@ public class GameActivity extends AppCompatActivity {
             addView(linearLayout, key, editText);
         }
     }
+
+    private void setScore(){
+        player.playerScores.add(new PlayerScore(score, "Survival Mode"));
+
+        SharedPreferences credentials = getSharedPreferences(CREDENTIAL_SHARED_PREF, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = credentials.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(player);
+        editor.putString("Player",json);
+        editor.commit();
+    }
+
+    private void setHurt(){
+        if(lives == 3){
+            live3.setBackgroundResource(R.color.transparent);
+        }
+        if(lives == 2){
+            live2.setBackgroundResource(R.color.transparent);
+        }
+        if(lives == 1){
+            Intent intent = new Intent(GameActivity.this, GameOverActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        lives--;
+    }
+
+
 }
