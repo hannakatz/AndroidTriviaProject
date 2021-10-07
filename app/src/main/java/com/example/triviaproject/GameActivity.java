@@ -33,13 +33,11 @@ public class GameActivity extends AppCompatActivity {
     private String textAnswer = "BIRD";
     private Player player;
     TextView textScreen, textQuestion, textTitle;
-    Animation animation;
+    Animation animation, shakeAnimation, animationSmallToBig;
     private static int score;
     private static int lives = 3;
     private static int counterProgress = 0;
-    private ImageView live1;
-    private ImageView live2;
-    private ImageView live3;
+    private ImageView live1, live2, live3 , hurryUp, statusImage;
     private TextView setScore;
     private Button btnBack;
     ProgressBar progressBar;
@@ -53,24 +51,32 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         animation = AnimationUtils.loadAnimation(this, R.anim.smallbigforth);
+        shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake);
+        animationSmallToBig = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
+
         btnBack = findViewById(R.id.btn_back);
 
         live1 = findViewById(R.id.live_1);
         live2 = findViewById(R.id.live_2);
         live3 = findViewById(R.id.live_3);
+        hurryUp = findViewById(R.id.hurry_up);
+        statusImage = findViewById(R.id.status_image);
 
         setScore = findViewById(R.id.text_count);
 
-        mCountDownTimer = new CountDownTimer(60000,1000) {
+        mCountDownTimer = new CountDownTimer(30000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 counterProgress++;
-                progressBar.setProgress((int)counterProgress*100/(60000/1000));
-                if(counterProgress == 45){
+                progressBar.setProgress((int)counterProgress*100/(30000/1000));
+                if(counterProgress == 20){
                     Drawable progressDrawableRed = getResources().getDrawable(R.drawable.progress_red);
                     progressBar.setProgressDrawable(progressDrawableRed);
+                    hurryUp.startAnimation(shakeAnimation);
                 }
-
+                /*if(counterProgress == 25){
+                    hurryUp.setVisibility(ImageView.GONE);
+                }*/
             }
 
             @Override
@@ -172,12 +178,15 @@ public class GameActivity extends AppCompatActivity {
             score++;
             if(score == 3){
                 setScore();
-                Intent intent = new Intent(GameActivity.this, WinActivity.class);
-                startActivity(intent);
-                finish();
+                /*Intent intent = new Intent(GameActivity.this, WinActivity.class);
+                startActivity(intent);*/
+                statusImage.setBackgroundResource(R.drawable.won);
+                statusImage.startAnimation(animationSmallToBig);
+                //finish();
             }
             String scoreString = Integer.toString(score);
             setScore.setText(scoreString);
+            mCountDownTimer.start();
         }
         else {
             Toast.makeText(GameActivity.this, "Wrong", Toast.LENGTH_SHORT).show();
@@ -211,12 +220,13 @@ public class GameActivity extends AppCompatActivity {
             live2.setBackgroundResource(R.color.transparent);
         }
         if(lives == 1){
-            Intent intent = new Intent(GameActivity.this, GameOverActivity.class);
-            startActivity(intent);
-            finish();
+            statusImage.setBackgroundResource(R.drawable.gameover);
+            statusImage.startAnimation(animationSmallToBig);
+            //finish();
         }
         lives--;
     }
+
 
 
 }
