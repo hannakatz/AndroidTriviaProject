@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/dev/GitHub/AndroidTriviaProject/app/src/main/res/drawable/background.xml" value="0.22135416666666666" />
         <entry key="..\:/dev/GitHub/AndroidTriviaProject/app/src/main/res/drawable/but_shape_selector.xml" value="0.22135416666666666" />
+        <entry key="..\:/dev/GitHub/AndroidTriviaProject/app/src/main/res/drawable/button_shape.xml" value="0.22135416666666666" />
         <entry key="..\:/dev/GitHub/AndroidTriviaProject/app/src/main/res/drawable/pogress_layer_list.xml" value="0.22135416666666666" />
         <entry key="..\:/dev/GitHub/AndroidTriviaProject/app/src/main/res/drawable/progress_red.xml" value="0.22135416666666666" />
         <entry key="..\:/dev/GitHub/AndroidTriviaProject/app/src/main/res/drawable/progress_red_lite.xml" value="0.22135416666666666" />
@@ -15,7 +17,7 @@
         <entry key="..\:/dev/GitHub/AndroidTriviaProject/app/src/main/res/layout/activity_listview.xml" value="0.20520833333333333" />
         <entry key="..\:/dev/GitHub/AndroidTriviaProject/app/src/main/res/layout/activity_login.xml" value="0.18697916666666667" />
         <entry key="..\:/dev/GitHub/AndroidTriviaProject/app/src/main/res/layout/activity_lose.xml" value="0.20520833333333333" />
-        <entry key="..\:/dev/GitHub/AndroidTriviaProject/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/dev/GitHub/AndroidTriviaProject/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/dev/GitHub/AndroidTriviaProject/app/src/main/res/layout/activity_scores_player.xml" value="0.20520833333333333" />
         <entry key="..\:/dev/GitHub/AndroidTriviaProject/app/src/main/res/layout/activity_setting.xml" value="0.25" />
         <entry key="..\:/dev/GitHub/AndroidTriviaProject/app/src/main/res/layout/activity_sign_up.xml" value="0.18697916666666667" />

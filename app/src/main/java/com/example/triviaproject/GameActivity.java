@@ -32,13 +32,12 @@ public class GameActivity extends AppCompatActivity {
     private String[] keys = {"R", "I", "B", "D", "X"};
     private String textAnswer = "BIRD";
     private Player player;
-    TextView textScreen, textQuestion, textTitle;
+    TextView textScreen, textQuestion, textTitle, setScore;
     Animation animation, shakeAnimation, animationSmallToBig;
     private static int score;
     private static int lives = 3;
     private static int counterProgress = 0;
     private ImageView live1, live2, live3 , hurryUp, statusImage;
-    private TextView setScore;
     private Button btnBack;
     ProgressBar progressBar;
     CountDownTimer mCountDownTimer;
@@ -178,11 +177,9 @@ public class GameActivity extends AppCompatActivity {
             score++;
             if(score == 3){
                 setScore();
-                /*Intent intent = new Intent(GameActivity.this, WinActivity.class);
-                startActivity(intent);*/
                 statusImage.setBackgroundResource(R.drawable.won);
                 statusImage.startAnimation(animationSmallToBig);
-                //finish();
+                player.setHighScore(score);
             }
             String scoreString = Integer.toString(score);
             setScore.setText(scoreString);
@@ -220,6 +217,7 @@ public class GameActivity extends AppCompatActivity {
             live2.setBackgroundResource(R.color.transparent);
         }
         if(lives == 1){
+            player.setHighScore(score);
             statusImage.setBackgroundResource(R.drawable.gameover);
             statusImage.startAnimation(animationSmallToBig);
             //finish();

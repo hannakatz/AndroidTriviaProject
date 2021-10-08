@@ -56,16 +56,6 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_player_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/but_shape_selector"
-        android:textColor="@color/white"
-        android:text="Player Scores"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
-
 
 <LinearLayout
     android:layout_width="wrap_content"

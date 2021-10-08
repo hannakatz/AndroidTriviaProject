@@ -8,7 +8,7 @@ public class Player {
     String image;
     String musicPlay;
     ArrayList<PlayerScore> playerScores;
-
+    int highScore;
 
     public Player(String name, String setPassword, String setImage, String setMusicPlay){
         this.userName = name;
@@ -16,6 +16,7 @@ public class Player {
         this.image = setImage;
         this.musicPlay = setMusicPlay;
         playerScores = new ArrayList<PlayerScore>();
+        highScore = 0;
     }
 
     public String getUserName() {
@@ -56,5 +57,15 @@ public class Player {
 
     public void setPlayerScores(ArrayList<PlayerScore> playerScores) {
         this.playerScores = playerScores;
+    }
+
+    public int getHighScore() {
+        return highScore;
+    }
+
+    public void setHighScore(int highScore) {
+        if(highScore > this.highScore){
+            this.highScore = highScore;
+        }
     }
 }

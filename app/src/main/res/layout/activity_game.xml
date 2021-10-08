@@ -90,7 +90,7 @@
         android:layout_height="150dp">
 
         <TextView
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Guess Animals in English language"
             android:layout_gravity="center"
@@ -144,6 +144,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <ProgressBar
     android:id="@+id/progressbar"
     style="?android:attr/progressBarStyleHorizontal"
@@ -169,5 +170,5 @@
         android:id="@+id/status_image"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="100dp" />
 </RelativeLayout>
