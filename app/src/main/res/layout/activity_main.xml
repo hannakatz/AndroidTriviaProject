@@ -74,23 +74,26 @@
                android:background="@drawable/highscore" />
 
            <TextView
-               android:layout_width="wrap_content"
+               android:layout_width="match_parent"
                android:layout_height="wrap_content"
+               android:layout_marginTop="20dp"
+               android:gravity="center"
                android:text="The High Score:"
-               android:textSize="14dp"
                android:textColor="@color/purple_200"
-               android:layout_marginTop="20dp"/>
+               android:textSize="14dp"
+               android:textStyle="bold" />
 
            <TextView
                android:id="@+id/show_score"
-               android:layout_width="wrap_content"
+               android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_marginLeft="44dp"
-               android:layout_marginTop="40dp"
+               android:layout_alignParentTop="true"
+               android:layout_marginTop="55dp"
                android:gravity="center"
                android:text="1"
                android:textColor="@color/purple_200"
-               android:textSize="14dp" />
+               android:textSize="14dp"
+               android:textStyle="bold" />
 
 
        </RelativeLayout>

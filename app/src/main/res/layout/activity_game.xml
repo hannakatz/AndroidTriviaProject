@@ -1,170 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background3"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_image">
 
     <LinearLayout
+        android:id="@+id/layout_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="@drawable/background3"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/live_1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/heart"/>
-        <ImageView
-            android:id="@+id/live_2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/heart"/>
-        <ImageView
-            android:id="@+id/live_3"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/heart"/>
-
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_back"
-            android:background="@drawable/but_shape_selector"
-            android:text="Back"
-            android:textColor="@color/white"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="200dp"/>
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/live_1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/heart" />
+
+            <ImageView
+                android:id="@+id/live_2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/heart" />
+
+            <ImageView
+                android:id="@+id/live_3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/heart" />
+
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/but_shape_selector"
+                android:text="Back"
+                android:textColor="@color/white" />
 
 
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="In Fight Battle"
-        android:layout_gravity="center"
-        android:textSize="22sp"
-        android:textColor="@color/purple_200"
-        android:layout_marginTop="20dp"
-        android:id="@+id/text_screen"
-        android:textStyle="bold"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/text_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Score : "
             android:layout_gravity="center"
-            android:textSize="22sp"
+            android:layout_marginTop="20dp"
+            android:text="In Fight Battle"
             android:textColor="@color/purple_200"
-            android:id="@+id/text_score"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:layout_gravity="center"
             android:textSize="22sp"
-            android:textColor="@color/purple_200"
-            android:id="@+id/text_count"
-            android:textStyle="bold"/>
-    </LinearLayout>
+            android:textStyle="bold" />
 
-    <LinearLayout
-        android:background="@drawable/bgquestion"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_width="290dp"
-        android:gravity="center"
-        android:layout_height="150dp">
-
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Guess Animals in English language"
             android:layout_gravity="center"
-            android:textSize="26sp"
-            android:textAlignment="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Score : "
+                android:textColor="#536DFE"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0"
+                android:textColor="@color/purple_200"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bgquestion"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:lineSpacingExtra="6dp"
+                android:text="Guess Animals in English language"
+                android:textAlignment="center"
+                android:textColor="#332FA2"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bgpurple"
+            android:clickable="false"
+            android:focusable="false"
+            android:gravity="center"
+            android:padding="10dp"
             android:textColor="#332FA2"
-            android:lineSpacingExtra="6dp"
-            android:id="@+id/text_question"
-            android:textStyle="bold"/>
+            android:textSize="32sp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginBottom="10dp"
+            android:text="Letters"
+            android:textColor="@color/purple_200"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:id="@+id/layout_parent1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_parent2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_parent3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ProgressBar
+                android:id="@+id/progressbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:progressDrawable="@drawable/progress_green" />
+
+            <ImageView
+                android:id="@+id/hurry_up"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="220dp"
+                android:background="@drawable/hurryup"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
 
     </LinearLayout>
-
-<EditText
-    android:id="@+id/edit_text"
-    android:layout_width="200dp"
-    android:layout_height="80dp"
-    android:background="@drawable/bgpurple"
-    android:layout_gravity="center"
-    android:layout_marginTop="70dp"
-    android:textSize="32sp"
-    android:gravity="center"
-    android:textColor="#332FA2"
-    android:focusable="false"
-    android:clickable="false"
-    android:layout_marginBottom="70dp"
-    android:padding="10dp"/>
-
-<TextView
-    android:id="@+id/text_title"
-    android:text="Letters"
-    android:textSize="24sp"
-    android:textColor="@color/purple_200"
-    android:textStyle="bold"
-    android:layout_marginRight="28dp"
-    android:layout_marginLeft="28dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
-    />
-    
-    <LinearLayout
-        android:id="@+id/layout_parent"
-        android:orientation="horizontal"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </LinearLayout>
-
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <ProgressBar
-    android:id="@+id/progressbar"
-    style="?android:attr/progressBarStyleHorizontal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="50dp"
-    android:progressDrawable="@drawable/progress_green"/>
-
-    <ImageView
-        android:id="@+id/hurry_up"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:background="@drawable/hurryup"
-        android:layout_marginLeft="220dp"
-        android:visibility="invisible"/>
-
-</RelativeLayout>
-
-
-</LinearLayout>
 
     <ImageView
         android:id="@+id/status_image"

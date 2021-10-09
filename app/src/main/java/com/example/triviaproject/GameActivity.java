@@ -29,14 +29,15 @@ public class GameActivity extends AppCompatActivity {
 
     private int presCounter = 0;
     private int maxPresCounter = 4;
-    private String[] keys = {"R", "I", "B", "D", "X"};
+    private String[] keys = {"R", "I", "B", "D", "X", "X", "X", "X", "X", "X", "X"};
     private String textAnswer = "BIRD";
     private Player player;
     TextView textScreen, textQuestion, textTitle, setScore;
-    Animation animation, shakeAnimation, animationSmallToBig;
+    Animation animation, shakeAnimation, animationSmallToBig, aniFade;
     private static int score;
     private static int lives = 3;
     private static int counterProgress = 0;
+    private static boolean newGame = false;
     private ImageView live1, live2, live3 , hurryUp, statusImage;
     private Button btnBack;
     ProgressBar progressBar;
@@ -52,6 +53,7 @@ public class GameActivity extends AppCompatActivity {
         animation = AnimationUtils.loadAnimation(this, R.anim.smallbigforth);
         shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake);
         animationSmallToBig = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
+        aniFade = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
 
         btnBack = findViewById(R.id.btn_back);
 
@@ -68,14 +70,21 @@ public class GameActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 counterProgress++;
                 progressBar.setProgress((int)counterProgress*100/(30000/1000));
-                if(counterProgress == 20){
+                if(counterProgress == 22){
                     Drawable progressDrawableRed = getResources().getDrawable(R.drawable.progress_red);
                     progressBar.setProgressDrawable(progressDrawableRed);
                     hurryUp.startAnimation(shakeAnimation);
                 }
-                /*if(counterProgress == 25){
-                    hurryUp.setVisibility(ImageView.GONE);
-                }*/
+                if(counterProgress == 25){
+                    hurryUp.startAnimation(aniFade);
+                }
+                if (newGame == true) {
+                    counterProgress = 1;
+                    progressBar.setProgress(counterProgress);
+                    mCountDownTimer.start();
+                    newGame = false;
+                }
+
             }
 
             @Override
@@ -84,12 +93,7 @@ public class GameActivity extends AppCompatActivity {
             }
         };
         mCountDownTimer.start();
-
-        keys = shuffleArray(keys);
-        for(String key : keys){
-            addView(((LinearLayout)findViewById(R.id.layout_parent)), key, ((EditText) findViewById(R.id.edit_text)));
-        }
-        maxPresCounter = 4;
+        setLetters();
 
         SharedPreferences credentials = getSharedPreferences(CREDENTIAL_SHARED_PREF, Context.MODE_PRIVATE);
         Gson gson = new Gson();
@@ -121,7 +125,7 @@ public class GameActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        linearLayoutParams.rightMargin = 30;
+        linearLayoutParams.rightMargin = 15;
         final TextView textView = new TextView(this);
         textView.setLayoutParams(linearLayoutParams);
         textView.setBackgroundResource(R.drawable.bgpink);
@@ -170,7 +174,9 @@ public class GameActivity extends AppCompatActivity {
     private void doValidate(){
         presCounter = 0;
         EditText editText = findViewById(R.id.edit_text);
-        LinearLayout linearLayout = findViewById(R.id.layout_parent);
+        final LinearLayout linearLayout1 = findViewById(R.id.layout_parent1);
+        final LinearLayout linearLayout2 = findViewById(R.id.layout_parent2);
+        final LinearLayout linearLayout3 = findViewById(R.id.layout_parent3);
 
         if(editText.getText().toString().equals(textAnswer)){
             Toast.makeText(GameActivity.this, "Correct", Toast.LENGTH_SHORT).show();
@@ -180,10 +186,12 @@ public class GameActivity extends AppCompatActivity {
                 statusImage.setBackgroundResource(R.drawable.won);
                 statusImage.startAnimation(animationSmallToBig);
                 player.setHighScore(score);
+                statusImage.startAnimation(aniFade);
+                finish();
             }
             String scoreString = Integer.toString(score);
             setScore.setText(scoreString);
-            mCountDownTimer.start();
+            newGame = true;
         }
         else {
             Toast.makeText(GameActivity.this, "Wrong", Toast.LENGTH_SHORT).show();
@@ -192,9 +200,11 @@ public class GameActivity extends AppCompatActivity {
         editText.setText("");
 
         keys = shuffleArray(keys);
-        linearLayout.removeAllViews();
+        linearLayout1.removeAllViews();
+        linearLayout2.removeAllViews();
+        linearLayout3.removeAllViews();
         for(String key : keys){
-            addView(linearLayout, key, editText);
+            setLetters();
         }
     }
 
@@ -218,13 +228,33 @@ public class GameActivity extends AppCompatActivity {
         }
         if(lives == 1){
             player.setHighScore(score);
+            live1.setBackgroundResource(R.color.transparent);
             statusImage.setBackgroundResource(R.drawable.gameover);
             statusImage.startAnimation(animationSmallToBig);
-            //finish();
+            statusImage.startAnimation(aniFade);
+            finish();
         }
         lives--;
     }
 
+    private void setLetters(){
+        int x = 0;
+        keys = shuffleArray(keys);
+        for(String key : keys){
+
+            if(x < 6){
+                addView(((LinearLayout)findViewById(R.id.layout_parent1)), key, ((EditText) findViewById(R.id.edit_text)));
+            }
+            else if(x > 5 && x < 12){
+                addView(((LinearLayout)findViewById(R.id.layout_parent2)), key, ((EditText) findViewById(R.id.edit_text)));
+            }
+            else {
+                addView(((LinearLayout)findViewById(R.id.layout_parent3)), key, ((EditText) findViewById(R.id.edit_text)));
+            }
+            x++;
+        }
+        maxPresCounter = textAnswer.length();
+    }
 
 
 }
