@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TriviaProject">
         <activity
+            android:name=".StamActivity"
+            android:exported="true" />
+        <activity
             android:name=".ScoresPlayerActivity"
             android:exported="true" />
         <activity
