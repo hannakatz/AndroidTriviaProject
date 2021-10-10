@@ -7,11 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
@@ -27,8 +29,19 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.FileAsyncHttpResponseHandler;
+
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+
+import cz.msebera.android.httpclient.Header;
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.read.biff.BiffException;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -40,11 +53,15 @@ public class SignUpActivity extends AppCompatActivity {
     private Player player;
     private ActivityResultLauncher<Intent> resultLauncherCapture;
     private  ActivityResultLauncher<Intent> resultLauncherPick;
-    private RadioButton edMan;
-    private RadioButton edFemale;
+
 
     private final String CREDENTIAL_SHARED_PREF = "our_shared_pref";
     private static final int PERMISSION_CODE = 1001;
+    private Workbook workbook;
+    private AsyncHttpClient asyncHttpClient;
+    final String TABLE_NAME = "Trivia_Questions";;
+    final String CREATE_TABLE_CMD="CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT, category TEXT, question TEXT, answer TEXT, asked TEXT);";;
+    SQLiteDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
         edVerifyPassword = findViewById(R.id.ed_verify_pwd);
         btnCreateUser = findViewById(R.id.btn_create_user);
         profileImage = findViewById(R.id.profile_image);
-        edFemale = findViewById(R.id.rbtn_female);
-        edMan = findViewById(R.id.rbtn_male);
+
 
         resultLauncherCapture = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -114,8 +130,9 @@ public class SignUpActivity extends AppCompatActivity {
                         String json = gson.toJson(player);
                         editor.putString("Player",json);
                         editor.commit();
-
-                        SignUpActivity.this.finish();
+                        createDB();
+                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                        startActivity(intent);
                     }
                     else{
                         Toast.makeText(SignUpActivity.this, "Error! The passwords do not match", Toast.LENGTH_SHORT).show();
@@ -169,5 +186,47 @@ public class SignUpActivity extends AppCompatActivity {
 
         Log.d("Image Log:", imageEncoded);
         return imageEncoded;
+    }
+
+    //Creates an SQLite Database if one doesn't exist yet. Will do so on first run of the app after installation.
+    public void createDB ()
+    {
+        String URL = "https://github.com/Sagie110/Trivia-Project/raw/main/Trivias_Final.xls";
+        asyncHttpClient = new AsyncHttpClient();
+        asyncHttpClient.get(URL, new FileAsyncHttpResponseHandler(this) {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
+                Toast.makeText(SignUpActivity.this, "Error: Please verify Internet Connectivity", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, File file) {
+
+                WorkbookSettings ws = new WorkbookSettings();
+                ws.setGCDisabled(true);
+                if (file != null) {
+                    try {
+                        workbook = Workbook.getWorkbook(file);
+                        Sheet sheet = workbook.getSheet(0);
+                        database = openOrCreateDatabase("TriviaQ", MODE_PRIVATE,null);
+                        database.execSQL(CREATE_TABLE_CMD);
+                        ContentValues contentsVal = new ContentValues();
+                        for (int i = 0; i < sheet.getRows(); i++) {
+                            Cell[] row = sheet.getRow(i);
+                            contentsVal.put("category", row[0].getContents());
+                            contentsVal.put("question", row[1].getContents());
+                            contentsVal.put("answer", row[2].getContents());
+                            contentsVal.put("asked", row[3].getContents());
+                            database.insert(TABLE_NAME, null, contentsVal);
+
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (BiffException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            } });
     }
 }

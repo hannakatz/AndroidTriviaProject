@@ -1,5 +1,7 @@
 package com.example.triviaproject;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 public class Player {
@@ -63,9 +65,11 @@ public class Player {
         return highScore;
     }
 
+
     public void setHighScore(int highScore) {
         if(highScore > this.highScore){
             this.highScore = highScore;
         }
+
     }
 }

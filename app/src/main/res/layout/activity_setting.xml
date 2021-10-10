@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background3"
+    android:background="@drawable/back2"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -18,43 +18,33 @@
             android:layout_height="50dp"
             android:id="@+id/btn_sound"
             android:background="@drawable/ic_sound_play"
-            android:layout_marginLeft="80dp"
+            android:layout_marginStart="80dp"
             android:layout_marginTop="20dp"/>
 
         <TextView
+            android:id="@+id/playsound"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="Play Sound"
+            android:text="@string/playsound"
             android:textColor="@color/purple_200"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:textStyle="bold"
             android:textSize="35dp"/>
 
     </LinearLayout>
 
-    <LinearLayout android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Switch
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/switch_display"
-            android:layout_marginLeft="70dp"
-            android:layout_marginTop="20dp"/>
-
-        <TextView
+        <Button
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Display settings"
-            android:textColor="@color/purple_200"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="28dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_reset_questions"
+            android:background="@drawable/but_shape_selector"
+            android:text="@string/btn_reset_questions"
+            android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="35dp"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"/>
 
-    </LinearLayout>
 
 
 <LinearLayout
@@ -77,26 +67,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="version : "
+        android:text="Version : 1.0.0"
         android:textColor="@color/purple_200"
         android:textSize="25dp"
         android:layout_marginTop="5dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="credit : "
-        android:textColor="@color/purple_200"
-        android:textSize="25dp"
-        android:layout_marginTop="5dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="email contact : "
-        android:textColor="@color/purple_200"
-        android:textSize="25dp"
-        android:layout_marginTop="5dp"/>
-
 
 </LinearLayout>
 

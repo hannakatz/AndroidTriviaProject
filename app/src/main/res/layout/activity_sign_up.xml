@@ -3,18 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background3"
+    android:background="@drawable/back2"
     android:orientation="vertical"
     android:padding="30dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
-        android:id="@+id/register"
+        android:id="@+id/s"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="40dp"
         android:textColor="@color/purple_200"
-        android:text="Register"
+        android:text="@string/s"
         android:textStyle="bold"
         android:layout_marginTop="10dp"/>
 
@@ -30,7 +30,7 @@
         android:id="@+id/ed_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="User Name"
+        android:hint="@string/ed_username"
         android:textStyle="bold"
         android:textColor="@color/purple_200"
         android:textColorHint="@color/transparent50"
@@ -40,7 +40,7 @@
         android:id="@+id/ed_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="@string/ed_password"
         android:layout_marginTop="10dp"
         android:textStyle="bold"
         android:textColor="@color/purple_200"
@@ -51,47 +51,13 @@
         android:id="@+id/ed_verify_pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Verify Password"
+        android:hint="@string/ed_verify_pwd"
         android:inputType="textPassword"
         android:textStyle="bold"
         android:textColor="@color/purple_200"
         android:textColorHint="@color/transparent50"
         android:layout_marginTop="10dp"/>
 
-
-    <TextView
-        android:id="@+id/gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="23sp"
-        android:textColor="@color/purple_200"
-        android:textStyle="bold"
-        android:layout_marginTop="8dp"
-        android:text="Gender" />
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <RadioButton
-            android:id="@+id/rbtn_male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/purple_200"
-            android:textStyle="bold"
-            android:text="Male" />
-
-        <RadioButton
-            android:id="@+id/rbtn_female"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/purple_200"
-            android:textStyle="bold"
-            android:text="Female" />
-
-    </RadioGroup>
 
     <Button
         android:id="@+id/btn_create_user"
@@ -101,7 +67,7 @@
         android:textSize="24dp"
         android:textColor="@color/white"
         android:background="@drawable/but_shape_selector"
-        android:text="SingUp" />
+        android:text="@string/btn_create_user" />
 
 
 

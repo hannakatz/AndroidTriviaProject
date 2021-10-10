@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 
 public class PlayerScore {
     private String gameName;
-    public int score;
+    private int score;
+    private String name;
 
-    public PlayerScore(int score, String gameName){
+    public PlayerScore(int score, String gameName, String name){
         this.score = score;
         this.gameName = gameName;
+        this.name = name;
     }
 
     public String getGameName() {
@@ -30,6 +32,6 @@ public class PlayerScore {
     @NonNull
     @Override
     public String toString() {
-        return "Game : " + gameName + "\n" + "The Score : " + score;
+        return name + ":\nGame : " + gameName + "\n" + "The Score : " + score;
     }
 }
